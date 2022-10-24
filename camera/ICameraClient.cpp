@@ -51,11 +51,7 @@ public:
         data.writeInterfaceToken(ICameraClient::getInterfaceDescriptor());
         data.writeInt32(msgType);
         data.writeInt32(ext1);
-        if ((msgType == CAMERA_MSG_PREVIEW_FRAME) && (ext1 == CAMERA_FRAME_DATA_FD)) {
-            data.writeFileDescriptor(ext2);
-        } else {
-            data.writeInt32(ext2);
-        }
+        data.writeInt32(ext2);
         remote()->transact(NOTIFY_CALLBACK, data, &reply, IBinder::FLAG_ONEWAY);
     }
 
